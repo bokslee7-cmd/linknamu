@@ -20,7 +20,7 @@ export default function LinkCard({ link, count }: Props) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className="flex min-h-14 items-center justify-between gap-3 rounded-2xl border border-stone-300 bg-white px-5 py-3 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-600 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+      className="flex min-h-14 items-center justify-between gap-3 rounded-3xl border border-white/60 bg-white/40 px-6 py-4 shadow-[0_8px_24px_-12px_rgba(180,100,50,0.35)] backdrop-blur-md transition duration-200 hover:-translate-y-px hover:bg-white/55 hover:shadow-[0_12px_28px_-12px_rgba(180,100,50,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
     >
       <span className="min-w-0">
         <span className="block truncate font-semibold text-stone-900">{link.title}</span>
@@ -28,7 +28,7 @@ export default function LinkCard({ link, count }: Props) {
           <span className="block truncate text-sm text-stone-500">{link.description}</span>
         )}
       </span>
-      <span className="shrink-0 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800">
+      <span className="shrink-0 rounded-full bg-white/60 px-3 py-1 text-xs font-medium text-orange-800">
         {clicks.toLocaleString("ko-KR")}회
       </span>
     </a>
