@@ -12,7 +12,7 @@ function collection() {
   if (!uri) return null;
   globalForMongo._mongo ??= new MongoClient(uri).connect();
   return globalForMongo._mongo.then((c) =>
-    c.db().collection<{ _id: string; count: number }>("clicks"),
+    c.db("linknamu").collection<{ _id: string; count: number }>("clicks"),
   );
 }
 

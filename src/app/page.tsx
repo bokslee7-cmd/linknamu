@@ -1,23 +1,12 @@
-import LinkCard from "@/components/LinkCard";
+import LinkList from "@/components/LinkList";
 import ProfileHeader from "@/components/ProfileHeader";
 import { links, profile } from "@/data/profile";
-import { getClickCounts } from "@/lib/clicks";
 
-export const dynamic = "force-dynamic";
-
-export default async function Home() {
-  const counts = await getClickCounts();
-
+export default function Home() {
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-md flex-col gap-10 px-6 py-14">
       <ProfileHeader {...profile} />
-      <ul className="flex flex-col gap-4">
-        {links.map((link) => (
-          <li key={link.id}>
-            <LinkCard link={link} count={counts[link.id] ?? 0} />
-          </li>
-        ))}
-      </ul>
+      <LinkList links={links} />
     </main>
   );
 }

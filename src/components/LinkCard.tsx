@@ -1,16 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import type { LinkItem } from "@/data/profile";
 
-type Props = { link: LinkItem; count: number };
+type Props = { link: LinkItem; count: number; onClick: () => void };
 
-export default function LinkCard({ link, count }: Props) {
-  const [clicks, setClicks] = useState(count);
-
+export default function LinkCard({ link, count, onClick }: Props) {
   // 링크는 바로 열고, 클릭 수 기록은 뒤에서 처리 (실패해도 이동에는 영향 없음)
   function handleClick() {
-    setClicks((c) => c + 1);
+    onClick();
     fetch(`/api/click/${link.id}`, { method: "POST", keepalive: true }).catch(() => {});
   }
 
@@ -29,7 +26,7 @@ export default function LinkCard({ link, count }: Props) {
         )}
       </span>
       <span className="shrink-0 rounded-full bg-white/60 px-3 py-1 text-xs font-medium text-orange-800">
-        {clicks.toLocaleString("ko-KR")}회
+        {count.toLocaleString("ko-KR")}회
       </span>
     </a>
   );
