@@ -9,7 +9,12 @@ const globalForMongo = globalThis as unknown as { _mongo?: Promise<MongoClient> 
 
 function collection() {
   const uri = process.env.MONGODB_URI;
-  if (!uri) return null;
+  if (!uri) {
+    if (process.env.NODE_ENV === "production") {
+      console.error("MONGODB_URI 환경 변수가 없어 메모리에 임시 저장합니다. 배포 환경 변수를 확인하세요.");
+    }
+    return null;
+  }
   globalForMongo._mongo ??= new MongoClient(uri).connect();
   return globalForMongo._mongo.then((c) =>
     c.db("linknamu").collection<{ _id: string; count: number }>("clicks"),
